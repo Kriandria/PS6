@@ -24,10 +24,17 @@ public class Person_Test {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
+		Date dDate = null;
+		try {
+			dDate = new SimpleDateFormat("yyyy-MM-dd").parse("1972-07-31");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
 		per1 = new PersonDomainModel();
 		per1.setFirstName("Bert");
 		per1.setLastName("Gibbons");
+		per1.setBirthday(dDate);
 		per1.setCity("Townsend");
 		per1.setPostalCode(19010);
 		per1.setStreet("214 Labrador Lane");
@@ -90,12 +97,11 @@ public class Person_Test {
 		PersonDAL.addPerson(per1);			
 		per = PersonDAL.getPerson(per1.getPersonID());
 		System.out.println(per1.getPersonID() + " found");
-		assertNotNull("The Person should have been added to the database",per);
-		
+//		assertNotNull("The Person should have been added to the database",per);
+	
 		PersonDAL.deletePerson(per1.getPersonID());
-		per = PersonDAL.getPerson(per1.getPersonID());		
-		assertNull("The Person shouldn't have been in the database",per);	
-		
+		per = PersonDAL.getPerson(per1.getPersonID());
+		assertNull("The person should not be in the database", per);
 	}
 	
 	@Test
@@ -119,9 +125,14 @@ public class Person_Test {
 	@Test
 	public void GetPersonTest()
 	{
-		PersonDomainModel per;		
+		PersonDomainModel per;
+		PersonDAL.addPerson(per1);			
+		per = PersonDAL.getPerson(per1.getPersonID());
+		System.out.println(per1.getPersonID() + " found");
+
+			
 		per = PersonDAL.getPerson(per1.getPersonID());		
-		assertNull("The Person shouldn't have been in the database",per);	
+		assertNotNull("The Person should have been in the database",per);	
 		
 	}
 }

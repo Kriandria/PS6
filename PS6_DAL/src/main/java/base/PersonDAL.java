@@ -19,7 +19,7 @@ public class PersonDAL {
 	public static PersonDomainModel addPerson(PersonDomainModel per) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
-//		int employeeID = 0;
+		int employeeID = 0;
 		try {
 			tx = session.beginTransaction();
 			session.save(per);
@@ -70,7 +70,7 @@ public class PersonDAL {
 		try {
 			tx = session.beginTransaction();	
 									
-			Query query = session.createQuery("from PersonDomainModel where PersonID = :id ");
+			Query query = session.createQuery("from PersonDomainModel where personId = :id ");
 			query.setParameter("id", perID.toString());
 			
 			List<?> list = query.list();
@@ -85,7 +85,7 @@ public class PersonDAL {
 			session.close();
 		}
 		return perGet;
-	}
+	}	
 
 	public static void deletePerson(UUID perID) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
