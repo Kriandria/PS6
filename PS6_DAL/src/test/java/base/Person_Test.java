@@ -97,7 +97,7 @@ public class Person_Test {
 		PersonDAL.addPerson(per1);			
 		per = PersonDAL.getPerson(per1.getPersonID());
 		System.out.println(per1.getPersonID() + " found");
-//		assertNotNull("The Person should have been added to the database",per);
+		assertNotNull("The Person should have been added to the database",per);
 	
 		PersonDAL.deletePerson(per1.getPersonID());
 		per = PersonDAL.getPerson(per1.getPersonID());
