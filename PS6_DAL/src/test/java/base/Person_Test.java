@@ -49,11 +49,7 @@ public class Person_Test {
 	}
 
 	@After
-	public void tearDown() throws Exception {
-		PersonDomainModel per;	
-		PersonDAL.deletePerson(per1.getPersonID());
-		per = PersonDAL.getPerson(per1.getPersonID());
-		assertNull("The Person shouldn't have been in the database",per);		
+	public void tearDown() throws Exception {		
 	}
 	
 	@Test
@@ -67,6 +63,8 @@ public class Person_Test {
 		per = PersonDAL.getPerson(per1.getPersonID());
 		System.out.println(per1.getPersonID() + " found");
 		assertNotNull("The Person should have been added to the database",per);
+		
+		PersonDAL.deletePerson(per1.getPersonID());
 	}
 	
 	@Test
@@ -85,6 +83,8 @@ public class Person_Test {
 		per = PersonDAL.getPerson(per1.getPersonID());
 
 		assertTrue("Name Didn't Change",per1.getLastName() == C_LASTNAME);
+		
+		PersonDAL.deletePerson(per1.getPersonID());
 	}
 
 	@Test
@@ -120,6 +120,8 @@ public class Person_Test {
 		persons = PersonDAL.getPersons();
 		System.out.println(persons);
 		assertNotNull("The persons should have been retrieved from the database", persons);
+		
+		PersonDAL.deletePerson(per1.getPersonID());
 	}
 	
 	@Test
@@ -133,6 +135,8 @@ public class Person_Test {
 			
 		per = PersonDAL.getPerson(per1.getPersonID());		
 		assertNotNull("The Person should have been in the database",per);	
+		
+		PersonDAL.deletePerson(per1.getPersonID());
 		
 	}
 }

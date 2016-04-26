@@ -74,7 +74,9 @@ public class PersonDAL {
 			query.setParameter("id", perID.toString());
 			
 			List<?> list = query.list();
-			perGet = (PersonDomainModel)list.get(0);
+			if (list.size() > 0) {
+				perGet = (PersonDomainModel) list.get(0);
+			}
 			
 			tx.commit();
 		} catch (HibernateException e) {

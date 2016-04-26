@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Nov 13, 2014 2:49:57 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="domain.PersonDomainModel" table="stu">
+	<class name="domain.PersonDomainModel" table="per">
 
 		<id name="PersonID" type="uuid-char">
 			<column name="PersonID" length="40" />
